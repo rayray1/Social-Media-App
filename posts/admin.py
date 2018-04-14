@@ -3,5 +3,14 @@ from django.contrib import admin
 from . import models
 
 
+class CommentInline(admin.TabularInline):
+    model = models.Comment
 
-admin.site.register(models.Post)
+
+class PostAdmin(admin.ModelAdmin):
+    inlines = [CommentInline]
+
+
+
+admin.site.register(models.Post, PostAdmin)
+admin.site.register(models.Comment)
